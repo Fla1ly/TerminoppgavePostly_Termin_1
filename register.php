@@ -26,10 +26,10 @@ if(isset($_POST['submit'])){
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
    if($select_user->rowCount() > 0){
-      $message[] = 'email already exists!';
+      $message[] = 'email existerer ikke!';
    }else{
       if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
+          $message[] = 'bekreft passordet stemmer ikke!';
       }else{
          $insert_user = $conn->prepare("INSERT INTO `users`(name, email, password) VALUES(?,?,?)");
          $insert_user->execute([$name, $email, $cpass]);
@@ -71,13 +71,13 @@ if(isset($_POST['submit'])){
 <section class="form-container">
 
    <form action="" method="post">
-      <h3>register now</h3>
-      <input type="text" name="name" required placeholder="enter your name" class="box" maxlength="50">
-      <input type="email" name="email" required placeholder="enter your email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="pass" required placeholder="enter your password" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
-      <input type="password" name="cpass" required placeholder="confirm your password" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+      <h3>registrer nå</h3>
+      <input type="text" name="name" required placeholder="navn" class="box" maxlength="50">
+      <input type="email" name="email" required placeholder="email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="pass" required placeholder="passord" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+      <input type="password" name="cpass" required placeholder="passord" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
       <input type="submit" value="register now" name="submit" class="btn">
-      <p>already have an account? <a href="login.php">login now</a></p>
+      <p>har du ikke konto? <a href="login.php">logg in</a></p>
    </form>
 
 </section>

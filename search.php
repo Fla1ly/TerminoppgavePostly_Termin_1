@@ -20,7 +20,7 @@ include 'components/like_post.php';
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>search page</title>
+   <title>søk</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
@@ -90,7 +90,7 @@ include 'components/like_post.php';
       <?php
          }
       }else{
-         echo '<p class="empty">no result found!</p>';
+         echo '<p class="empty">ingen relustater ble funnet!</p>';
       }
       ?>
    </div>
@@ -99,7 +99,7 @@ include 'components/like_post.php';
 
 <?php
    }else{
-      echo '<section><p class="empty">search something!</p></section>';
+      echo '<section><p class="empty">søk noe!</p></section>';
    }
 ?>
 

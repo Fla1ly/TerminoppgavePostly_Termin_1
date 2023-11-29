@@ -34,7 +34,7 @@ include 'components/like_post.php';
 
 <section class="posts-container">
 
-   <h1 class="heading">latest posts</h1>
+   <h1 class="heading">nylige innlegg</h1>
 
    <div class="box-container">
 
@@ -77,7 +77,7 @@ include 'components/like_post.php';
          ?>
          <div class="post-title"><?= $fetch_posts['title']; ?></div>
          <div class="post-content content-150"><?= $fetch_posts['content']; ?></div>
-         <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">read more</a>
+         <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">les mer</a>
          <a href="category.php?category=<?= $fetch_posts['category']; ?>" class="post-cat"> <i class="fas fa-tag"></i> <span><?= $fetch_posts['category']; ?></span></a>
          <div class="icons">
             <a href="view_post.php?post_id=<?= $post_id; ?>"><i class="fas fa-comment"></i><span>(<?= $total_post_comments; ?>)</span></a>
@@ -88,7 +88,7 @@ include 'components/like_post.php';
       <?php
          }
       }else{
-         echo '<p class="empty">no posts added yet!</p>';
+         echo '<p class="empty">ingen innlegg ble lagd ennå!</p>';
       }
       ?>
    </div>

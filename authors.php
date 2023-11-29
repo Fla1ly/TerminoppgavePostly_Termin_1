@@ -38,7 +38,7 @@ include 'components/like_post.php';
 
 <section class="authors">
 
-   <h1 class="heading">authors</h1>
+   <h1 class="heading">Forfattere</h1>
 
    <div class="box-container">
 
@@ -62,16 +62,16 @@ include 'components/like_post.php';
 
    ?>
    <div class="box">
-      <p>author : <span><?= $fetch_authors['name']; ?></span></p>
-      <p>total posts : <span><?= $total_admin_posts; ?></span></p>
-      <p>posts likes : <span><?= $total_admin_likes; ?></span></p>
-      <p>posts comments : <span><?= $total_admin_comments; ?></span></p>
-      <a href="author_posts.php?author=<?= $fetch_authors['name']; ?>" class="btn">view posts</a>
+      <p>forfatter : <span><?= $fetch_authors['name']; ?></span></p>
+      <p>totalt antall innlegg : <span><?= $total_admin_posts; ?></span></p>
+      <p>innlegg liker : <span><?= $total_admin_likes; ?></span></p>
+      <p>innlegg kommentarer : <span><?= $total_admin_comments; ?></span></p>
+      <a href="author_posts.php?author=<?= $fetch_authors['name']; ?>" class="btn">Vis innlegg</a>
    </div>
    <?php
       }
    }else{
-      echo '<p class="empty">no authors found</p>';
+      echo '<p class="empty">Ingen forfattere ble funnet!</p>';
    }
    ?>
 

@@ -62,10 +62,10 @@ include 'components/like_post.php';
             <?php
             } else {
             ?>
-               <p class="name">login or register!</p>
+               <p class="name">logg inn eller registrer konto!</p>
                <div class="flex-btn">
-                  <a href="login.php" class="option-btn">login</a>
-                  <a href="register.php" class="option-btn">register</a>
+                  <a href="login.php" class="option-btn">logg in</a>
+                  <a href="register.php" class="option-btn">registrer</a>
                </div>
             <?php
             }
@@ -73,19 +73,19 @@ include 'components/like_post.php';
          </div>
 
          <div class="box">
-            <p>categories</p>
+            <p>kategorier</p>
             <div class="flex-box">
-               <a href="category.php?category=nature" class="links">nature</a>
-               <a href="category.php?category=education" class="links">education</a>
-               <a href="category.php?category=business" class="links">business</a>
-               <a href="category.php?category=travel" class="links">travel</a>
-               <a href="category.php?category=news" class="links">news</a>
-               <a href="category.php?category=gaming" class="links">gaming</a>
-               <a href="category.php?category=sports" class="links">sports</a>
-               <a href="category.php?category=design" class="links">design</a>
-               <a href="category.php?category=fashion" class="links">fashion</a>
-               <a href="category.php?category=persional" class="links">persional</a>
-               <a href="all_category.php" class="btn">view all</a>
+                  <a href="category.php?category=nature" class="links">natur</a>
+                  <a href="category.php?category=education" class="links">utdanning</a>
+                  <a href="category.php?category=business" class="links">buisness</a>
+                  <a href="category.php?category=travel" class="links">reise</a>
+                  <a href="category.php?category=news" class="links">nyheter</a>
+                  <a href="category.php?category=gaming" class="links">spill</a>
+                  <a href="category.php?category=sports" class="links">sport</a>
+                  <a href="category.php?category=design" class="links">design</a>
+                  <a href="category.php?category=fashion" class="links">fashion</a>
+                  <a href="category.php?category=persional" class="links">personlig</a>
+               <a href="all_category.php" class="btn">vis alt</a>
             </div>
          </div>
 
@@ -105,7 +105,7 @@ include 'components/like_post.php';
                   echo '<p class="empty">no posts added yet!</p>';
                }
                ?>
-               <a href="authors.php" class="btn">view all</a>
+               <a href="authors.php" class="btn">vis alt</a>
             </div>
          </div>
 
@@ -115,7 +115,7 @@ include 'components/like_post.php';
 
    <section class="posts-container">
 
-      <h1 class="heading">latest posts</h1>
+      <h1 class="heading">nylige innlegg</h1>
 
       <div class="box-container">
 
@@ -171,13 +171,13 @@ include 'components/like_post.php';
          <?php
             }
          } else {
-            echo '<p class="empty">no posts added yet!</p>';
+            echo '<p class="empty">ingen innlegg ble lagd ut ennå!</p>';
          }
          ?>
       </div>
 
       <div class="more-btn" style="text-align: center; margin-top:1rem;">
-         <a href="posts.php" class="inline-btn">view all posts</a>
+         <a href="posts.php" class="inline-btn">vis </a>
       </div>
 
    </section>
