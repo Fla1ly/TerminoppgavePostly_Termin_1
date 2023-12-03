@@ -76,7 +76,7 @@ include 'components/like_post.php';
                      ?>
                      <div class="post-title"><?= $fetch_posts['title']; ?></div>
                      <div class="post-content content-150"><?= $fetch_posts['content']; ?></div>
-                     <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">read more</a>
+                     <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">les mer</a>
                      <a href="category.php?category=<?= $fetch_posts['category']; ?>" class="post-cat"> <i class="fas fa-tag"></i> <span><?= $fetch_posts['category']; ?></span></a>
                      <div class="icons">
                         <a href="view_post.php?post_id=<?= $post_id; ?>"><i class="fas fa-comment"></i><span>(<?= $total_post_comments; ?>)</span></a>
@@ -111,13 +111,13 @@ include 'components/like_post.php';
                   $count_user_likes->execute([$user_id]);
                   $total_user_likes = $count_user_likes->rowCount();
                ?>
-                  <p> welcome <span><?= $fetch_profile['name']; ?></span></p>
-                  <p>total comments : <span><?= $total_user_comments; ?></span></p>
-                  <p>posts liked : <span><?= $total_user_likes; ?></span></p>
-                  <a href="update.php" class="btn">update profile</a>
+                  <p> velkommen <span><?= $fetch_profile['name']; ?></span></p>
+                  <p>kommentarer : <span><?= $total_user_comments; ?></span></p>
+                  <p>likte innlegg : <span><?= $total_user_likes; ?></span></p>
+                  <a href="update.php" class="btn">oppdater profil</a>
                   <div class="flex-btn">
-                     <a href="user_likes.php" class="option-btn">likes</a>
-                     <a href="user_comments.php" class="option-btn">comments</a>
+                     <a href="user_likes.php" class="option-btn">likte</a>
+                     <a href="user_comments.php" class="option-btn">kommentarer</a>
                   </div>
                <?php
                } else {

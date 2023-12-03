@@ -26,7 +26,8 @@ if(isset($message)){
    </div>
 
    <nav class="navbar">
-      <a href="dashboard.php"><i class="fas fa-home"></i> <span>home</span></a>
+      <a href="../home.php"><i class="fas fa-home"></i> <span>home</span></a>
+      <a href="dashboard.php"><i class="fas fa-dashboard"></i> <span>dashboard</span></a>
       <a href="add_posts.php"><i class="fas fa-pen"></i> <span>add posts</span></a>
       <a href="view_posts.php"><i class="fas fa-eye"></i> <span>view posts</span></a>
       <a href="admin_accounts.php"><i class="fas fa-user"></i> <span>accounts</span></a>

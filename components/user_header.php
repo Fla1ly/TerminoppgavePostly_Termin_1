@@ -23,6 +23,7 @@ if (isset($message)) {
       </form>
 
       <div class="icons">
+         <a href="./admin/dashboard.php"><button>Lag en blogg +</button></a>
          <ion-icon id="menu-btn" name="menu-outline"></ion-icon>
          <ion-icon id="search-btn" name="search-outline"></ion-icon>
          <ion-icon name="person-circle-outline" id="user-btn"></ion-icon>
