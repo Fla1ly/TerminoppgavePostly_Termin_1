@@ -23,23 +23,15 @@ include 'components/like_post.php';
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>likte innlegg</title>
-
-   <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
-   <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+</head>
 
-<body> <!-- header section starts -->
+<body>
    <?php include 'components/user_header.php'; ?>
-   <!-- header section ends -->
-
    <section class="posts-container">
-
       <h1 class="heading">liked posts</h1>
-
       <div class="box-container">
-
          <?php
          $select_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ?");
          $select_likes->execute([$user_id]);
@@ -71,7 +63,6 @@ include 'components/like_post.php';
                                  <div><?= $fetch_posts['date']; ?></div>
                               </div>
                            </div>
-
                            <?php
                            if ($fetch_posts['image'] != '') {
                            ?>
@@ -88,7 +79,6 @@ include 'components/like_post.php';
                                                                                                          echo 'color:red;';
                                                                                                       }; ?>"></i><span>(<?= $total_post_likes; ?>)</span></button>
                            </div>
-
                         </form>
          <?php
                      }
@@ -102,21 +92,9 @@ include 'components/like_post.php';
          }
          ?>
       </div>
-
       </div>
-
    </section>
-
-
-
-
-
-
-
-
-
-   <!-- custom js file link  -->
    <script src="js/script.js"></script>
-   </head>
+</body>
 
-   <body>
+</html>
