@@ -84,7 +84,7 @@ if (isset($_POST['delete_comment'])) {
       $comment_id = filter_var($comment_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    ?>
       <section class="comment-edit-form">
-         <p>edit your comment</p>
+         <p>rediger din kommentar</p>
          <?php
          $select_edit_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
          $select_edit_comment->execute([$comment_id]);
@@ -150,13 +150,13 @@ if (isset($_POST['delete_comment'])) {
          <?php
             }
          } else {
-            echo '<p class="empty">no posts found!</p>';
+            echo '<p class="empty">ingen innlegg ble funnet!</p>';
          }
          ?>
       </div>
    </section>
    <section class="comments-container">
-      <p class="comment-title">add comment</p>
+      <p class="comment-title">legg til kommentar</p>
       <?php
       if ($user_id != '') {
          $select_admin_id = $conn->prepare("SELECT * FROM `posts` WHERE id = ?");
@@ -167,20 +167,20 @@ if (isset($_POST['delete_comment'])) {
             <input type="hidden" name="admin_id" value="<?= $fetch_admin_id['admin_id']; ?>">
             <input type="hidden" name="user_name" value="<?= $fetch_profile['name']; ?>">
             <p class="user"><i class="fas fa-user"></i><a href="update.php"><?= $fetch_profile['name']; ?></a></p>
-            <textarea name="comment" maxlength="1000" class="comment-box" cols="30" rows="10" placeholder="write your comment" required></textarea>
-            <input type="submit" value="add comment" class="inline-btn" name="add_comment">
+            <textarea name="comment" maxlength="1000" class="comment-box" cols="30" rows="10" placeholder="skriv din kommentar" required></textarea>
+            <input type="submit" value="legg til kommentar" class="inline-btn" name="add_comment">
          </form>
       <?php
       } else {
       ?>
          <div class="add-comment">
-            <p>please login to add or edit your comment</p>
-            <a href="login.php" class="inline-btn">login now</a>
+            <p>Vennligst logg inn for å legge til eller redigere din kommentar</p>
+            <a href="login.php" class="inline-btn">logg inn</a>
          </div>
       <?php
       }
       ?>
-      <p class="comment-title">post comments</p>
+      <p class="comment-title">legg til kommentar</p>
       <div class="user-comments-container">
          <?php
          $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE post_id = ?");
@@ -206,8 +206,8 @@ if (isset($_POST['delete_comment'])) {
                   ?>
                      <form action="" method="POST">
                         <input type="hidden" name="comment_id" value="<?= $fetch_comments['id']; ?>">
-                        <button type="submit" class="inline-option-btn" name="open_edit_box">edit comment</button>
-                        <button type="submit" class="inline-delete-btn" name="delete_comment" onclick="return confirm('delete this comment?');">delete comment</button>
+                        <button type="submit" class="inline-option-btn" name="open_edit_box">rediger kommentar</button>
+                        <button type="submit" class="inline-delete-btn" name="delete_comment" onclick="return confirm('slett denne kommentar?');">slett kommentar</button>
                      </form>
                   <?php
                   }
@@ -216,7 +216,7 @@ if (isset($_POST['delete_comment'])) {
          <?php
             }
          } else {
-            echo '<p class="empty">no comments added yet!</p>';
+            echo '<p class="empty">ingen kommentar ble lagd til ennå!</p>';
          }
          ?>
       </div>

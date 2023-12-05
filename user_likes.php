@@ -30,7 +30,7 @@ include 'components/like_post.php';
 <body>
    <?php include 'components/user_header.php'; ?>
    <section class="posts-container">
-      <h1 class="heading">liked posts</h1>
+      <h1 class="heading">likte innlegg</h1>
       <div class="box-container">
          <?php
          $select_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ?");
@@ -72,7 +72,7 @@ include 'components/like_post.php';
                            ?>
                            <div class="post-title"><?= $fetch_posts['title']; ?></div>
                            <div class="post-content content-150"><?= $fetch_posts['content']; ?></div>
-                           <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">read more</a>
+                           <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">les mer</a>
                            <div class="icons">
                               <a href="view_post.php?post_id=<?= $post_id; ?>"><i class="fas fa-comment"></i><span>(<?= $total_post_likes; ?>)</span></a>
                               <button type="submit" name="like_post"><i class="fas fa-heart" style="<?php if ($total_post_likes > 0 and $user_id != '') {
@@ -84,11 +84,11 @@ include 'components/like_post.php';
                      }
                   }
                } else {
-                  echo '<p class="empty">no posts found for this category!</p>';
+                  echo '<p class="empty">ingen innlegg ble funnet i denne kategoriet!</p>';
                }
             }
          } else {
-            echo '<p class="empty">no liked posts available!</p>';
+            echo '<p class="empty">ingen likte innlegg tilgjengelig!</p>';
          }
          ?>
       </div>
