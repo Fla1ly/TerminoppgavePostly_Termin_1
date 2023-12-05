@@ -141,7 +141,7 @@ include 'components/like_post.php';
                   <a href="category.php?category=design" class="links">design</a>
                   <a href="category.php?category=fashion" class="links">fashion</a>
                   <a href="category.php?category=persional" class="links">personlig</a>
-                  <a href="all_category.php" class="btn">vis alt</a>
+                  <a href="all_category.php" class="btn">vis alle</a>
                </div>
             </div>
             <div class="box">
@@ -160,7 +160,7 @@ include 'components/like_post.php';
                      echo '<p class="empty">ingen innlegg ble lagd ennå!</p>';
                   }
                   ?>
-                  <a href="authors.php" class="btn">vis alt</a>
+                  <a href="authors.php" class="btn">vis alle</a>
                </div>
             </div>
          </div>
