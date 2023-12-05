@@ -41,7 +41,7 @@ if (!isset($admin_id)) {
             $numbers_of_posts = $select_posts->rowCount();
             ?>
             <h3><?= $numbers_of_posts; ?></h3>
-            <p>posts added</p>
+            <p>innlegg lagd til</p>
             <a href="add_posts.php" class="btn">legg til ny innlegg</a>
          </div>
          <div class="box">
@@ -61,8 +61,8 @@ if (!isset($admin_id)) {
             $numbers_of_deactive_posts = $select_deactive_posts->rowCount();
             ?>
             <h3><?= $numbers_of_deactive_posts; ?></h3>
-            <p>deactive posts</p>
-            <a href="view_posts.php" class="btn">see posts</a>
+            <p>deaktiver innlegg</p>
+            <a href="view_posts.php" class="btn">se innlegg</a>
          </div>
          <div class="box">
             <?php
@@ -71,8 +71,8 @@ if (!isset($admin_id)) {
             $numbers_of_users = $select_users->rowCount();
             ?>
             <h3><?= $numbers_of_users; ?></h3>
-            <p>users account</p>
-            <a href="users_accounts.php" class="btn">see users</a>
+            <p>vanlig brukere</p>
+            <a href="users_accounts.php" class="btn">se brukere</a>
          </div>
          <div class="box">
             <?php
@@ -81,8 +81,8 @@ if (!isset($admin_id)) {
             $numbers_of_admins = $select_admins->rowCount();
             ?>
             <h3><?= $numbers_of_admins; ?></h3>
-            <p>admins account</p>
-            <a href="admin_accounts.php" class="btn">see admins</a>
+            <p>creator kontoer</p>
+            <a href="admin_accounts.php" class="btn">se creators</a>
          </div>
          <div class="box">
             <?php
@@ -92,8 +92,8 @@ if (!isset($admin_id)) {
             $numbers_of_comments = $select_comments->rowCount();
             ?>
             <h3><?= $numbers_of_comments; ?></h3>
-            <p>comments added</p>
-            <a href="comments.php" class="btn">see comments</a>
+            <p>kommentarer lagd til</p>
+            <a href="comments.php" class="btn">se kommentarer</a>
          </div>
          <div class="box">
             <?php
@@ -103,8 +103,8 @@ if (!isset($admin_id)) {
             $numbers_of_likes = $select_likes->rowCount();
             ?>
             <h3><?= $numbers_of_likes; ?></h3>
-            <p>total likes</p>
-            <a href="view_posts.php" class="btn">see posts</a>
+            <p>totale likt</p>
+            <a href="view_posts.php" class="btn">se innlegg</a>
          </div>
       </div>
    </section>

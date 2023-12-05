@@ -36,6 +36,7 @@ if (isset($_POST['submit'])) {
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
    <link rel="stylesheet" href="../css/admin_style.css">
 </head>
+
 <body style="padding-left: 0 !important;">
    <?php
    if (isset($message)) {
@@ -51,10 +52,11 @@ if (isset($_POST['submit'])) {
    ?>
    <section class="form-container">
       <form action="" method="POST">
+         <p>default username = <span>admin</span> & password = <span>111</span></p>
          <h3>logg inn</h3>
          <input type="text" name="name" maxlength="20" required placeholder="brukernavn" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" maxlength="20" required placeholder="passord" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="submit" value="logg inn" name="submit" class="btn">
+         <input type="submit" value="logg in" name="submit" class="btn">
       </form>
    </section>
 </body>
