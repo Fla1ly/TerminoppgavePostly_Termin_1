@@ -36,8 +36,8 @@ if (isset($_POST['delete_comment'])) {
 <body>
    <?php include '../components/admin_header.php' ?>
    <section class="comments">
-      <h1 class="heading">innlegg kommentarer</h1>
-      <p class="comment-title">innlegg kommentarer</p>
+      <h1 class="heading">kommentarer</h1>
+      <p class="comment-title">kommentarer på innlegg</p>
       <div class="box-container">
          <?php
          $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE admin_id = ?");

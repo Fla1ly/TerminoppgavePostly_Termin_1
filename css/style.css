@@ -663,7 +663,6 @@ section {
    line-height: 4.7rem;
    font-size: 2rem;
    border: var(--border);
-   border-radius: .5rem;
    background-color: var(--light-bg);
    color: var(--black);
 }
@@ -686,7 +685,6 @@ section {
 }
 
 .comments-container .user-comments-container .show-comments .comment-box {
-   border-radius: .5rem;
    background-color: var(--light-bg);
    padding: 1.5rem 2rem;
    font-size: 2rem;
@@ -711,7 +709,6 @@ section {
    color: var(--white);
    padding: 1.5rem;
    font-size: 2rem;
-   border-radius: .5rem;
    border-bottom-left-radius: 0;
    border-bottom-right-radius: 0;
 }
@@ -734,7 +731,6 @@ section {
    resize: none;
    background-color: var(--light-bg);
    border: var(--border);
-   border-radius: .5rem;
    padding: 1.5rem;
    margin-bottom: .5rem;
 }
@@ -749,7 +745,6 @@ section {
 
 .authors .box-container .box {
    border: var(--border);
-   border-radius: .5rem;
    background-color: var(--light-bg);
    padding: 2rem;
    background-color: var(--white);
@@ -768,7 +763,6 @@ section {
 
 .categories .box-container {
    border: var(--border);
-   border-radius: .5rem;
    background-color: var(--light-bg);
    padding: 1rem 2rem;
    background-color: var(--white);
@@ -786,7 +780,6 @@ section {
    padding: .7rem 1rem;
    border: var(--border);
    background-color: var(--light-bg);
-   border-radius: .5rem;
    text-align: center;
 }
 
