@@ -52,8 +52,8 @@ include 'components/like_post.php';
          ?>
                <div class="box">
                   <p>forfatter : <span><?= $fetch_authors['name']; ?></span></p>
-                  <p>totalt antall innlegg : <span><?= $total_admin_posts; ?></span></p>
-                  <p>innlegg liker : <span><?= $total_admin_likes; ?></span></p>
+                  <p>antall innlegg : <span><?= $total_admin_posts; ?></span></p>
+                  <p>innlegg likes : <span><?= $total_admin_likes; ?></span></p>
                   <p>innlegg kommentarer : <span><?= $total_admin_comments; ?></span></p>
                   <a href="author_posts.php?author=<?= $fetch_authors['name']; ?>" class="btn">Vis innlegg</a>
                </div>

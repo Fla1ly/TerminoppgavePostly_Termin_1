@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
          <h3>logg inn</h3>
          <input type="email" name="email" required placeholder="email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="passord" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="submit" value="login now" name="submit" class="btn">
+         <input type="submit" value="logg inn" name="submit" class="btn">
          <p>har du ikke konto? <a href="register.php">registrer deg</a></p>
       </form>
    </section>

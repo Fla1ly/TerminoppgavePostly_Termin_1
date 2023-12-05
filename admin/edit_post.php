@@ -39,9 +39,9 @@ if (isset($_POST['save'])) {
 
    if (!empty($image)) {
       if ($image_size > 2000000) {
-         $message[] = 'images size is too large!';
+         $message[] = 'bilde er for stort!';
       } elseif ($select_image->rowCount() > 0 and $image != '') {
-         $message[] = 'please rename your image!';
+         $message[] = 'endre navn på bilde!';
       } else {
          $update_image = $conn->prepare("UPDATE `posts` SET image = ? WHERE id = ?");
          move_uploaded_file($image_tmp_name, $image_folder);
@@ -49,7 +49,7 @@ if (isset($_POST['save'])) {
          if ($old_image != $image and $old_image != '') {
             unlink('../uploaded_img/' . $old_image);
          }
-         $message[] = 'image updated!';
+         $message[] = 'bilde oppdatert!';
       }
    }
 }
@@ -68,7 +68,7 @@ if (isset($_POST['delete_post'])) {
    $delete_post->execute([$post_id]);
    $delete_comments = $conn->prepare("DELETE FROM `comments` WHERE post_id = ?");
    $delete_comments->execute([$post_id]);
-   $message[] = 'post deleted successfully!';
+   $message[] = 'innleg slettet!';
 }
 
 if (isset($_POST['delete_image'])) {
@@ -84,7 +84,7 @@ if (isset($_POST['delete_image'])) {
    }
    $unset_image = $conn->prepare("UPDATE `posts` SET image = ? WHERE id = ?");
    $unset_image->execute([$empty_image, $post_id]);
-   $message[] = 'image deleted successfully!';
+   $message[] = 'bilde slettet!';
 }
 
 
@@ -119,21 +119,21 @@ if (isset($_POST['delete_image'])) {
                <p>innlegg status <span>*</span></p>
                <select name="status" class="box" required>
                   <option value="<?= $fetch_posts['status']; ?>" selected><?= $fetch_posts['status']; ?></option>
-                  <option value="active">aktiv</option>
+                  <option value="active">aktiver</option>
                   <option value="deactive">deaktiver</option>
                </select>
                <p>innlegg tittel <span>*</span></p>
                <input type="text" name="title" maxlength="100" required placeholder="legg til tittel" class="box" value="<?= $fetch_posts['title']; ?>">
-               <p>publiser innlegg <span>*</span></p>
+               <p>innlegg innhold <span>*</span></p>
                <textarea name="content" class="box" required maxlength="10000" placeholder="skriv ditt innlegg..." cols="30" rows="10"><?= $fetch_posts['content']; ?></textarea>
-               <p>publiser kategori <span>*</span></p>
+               <p>innlegg kategori <span>*</span></p>
                <select name="category" class="box" required>
                   <option value="<?= $fetch_posts['category']; ?>" selected><?= $fetch_posts['category']; ?></option>
                   <option value="nature">natur</option>
                   <option value="education">utdanning</option>
-                  <option value="pets and animals">dyr og dyr</option>
+                  <option value="pets and animals">dyr</option>
                   <option value="technology">teknologi</option>
-                  <option value="fashion">mote</option>
+                  <option value="fashion">fashion</option>
                   <option value="entertainment">underholdning</option>
                   <option value="movies and animations">filmer</option>
                   <option value="gaming">spill</option>
@@ -147,7 +147,7 @@ if (isset($_POST['delete_image'])) {
                   <option value="lifestyle">livsstil</option>
                   <option value="personal">personlig</option>
                   <option value="health and fitness">helse og trening</option>
-                  <option value="business">forretning</option>
+                  <option value="business">buisness</option>
                   <option value="shopping">shopping</option>
                   <option value="animations">animasjoner</option>
                </select>
@@ -159,7 +159,7 @@ if (isset($_POST['delete_image'])) {
                <?php } ?>
                <div class="flex-btn">
                   <input type="submit" value="lagre innlegg" name="save" class="btn">
-                  <a href="view_posts.php" class="option-btn">go back</a>
+                  <a href="view_posts.php" class="option-btn">gå tilbake</a>
                   <input type="submit" value="slett innlegg" class="delete-btn" name="delete_post">
                </div>
             </form>

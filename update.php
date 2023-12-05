@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
       $select_email = $conn->prepare("SELECT * FROM `users` WHERE email = ?");
       $select_email->execute([$email]);
       if ($select_email->rowCount() > 0) {
-         $message[] = 'email already taken!';
+         $message[] = 'email er allerede i bruk!';
       } else {
          $update_email = $conn->prepare("UPDATE `users` SET email = ? WHERE id = ?");
          $update_email->execute([$email, $user_id]);

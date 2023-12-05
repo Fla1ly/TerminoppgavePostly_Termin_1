@@ -72,7 +72,7 @@ include 'components/like_post.php';
                      ?>
                      <div class="post-title"><?= $fetch_posts['title']; ?></div>
                      <div class="post-content content-150"><?= $fetch_posts['content']; ?></div>
-                     <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">read more</a>
+                     <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">les mer</a>
                      <a href="category.php?category=<?= $fetch_posts['category']; ?>" class="post-cat"> <i class="fas fa-tag"></i> <span><?= $fetch_posts['category']; ?></span></a>
                      <div class="icons">
                         <a href="view_post.php?post_id=<?= $post_id; ?>"><i class="fas fa-comment"></i><span>(<?= $total_post_comments; ?>)</span></a>

@@ -67,8 +67,8 @@ if (isset($_POST['submit'])) {
          <input type="email" name="email" required placeholder="email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" required placeholder="passord" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="cpass" required placeholder="passord" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="submit" value="register now" name="submit" class="btn">
-         <p>har du ikke konto? <a href="login.php">logg in</a></p>
+         <input type="submit" value="registrer deg" name="submit" class="btn">
+         <p>har du allerede konto? <a href="login.php">logg in</a></p>
       </form>
    </section>
    <script src="js/script.js"></script>

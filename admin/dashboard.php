@@ -61,7 +61,7 @@ if (!isset($admin_id)) {
             $numbers_of_deactive_posts = $select_deactive_posts->rowCount();
             ?>
             <h3><?= $numbers_of_deactive_posts; ?></h3>
-            <p>deaktiver innlegg</p>
+            <p>deaktiverte innlegg</p>
             <a href="view_posts.php" class="btn">se innlegg</a>
          </div>
          <div class="box">
@@ -92,7 +92,7 @@ if (!isset($admin_id)) {
             $numbers_of_comments = $select_comments->rowCount();
             ?>
             <h3><?= $numbers_of_comments; ?></h3>
-            <p>kommentarer lagd til</p>
+            <p>kommentarer på dine innlegg</p>
             <a href="comments.php" class="btn">se kommentarer</a>
          </div>
          <div class="box">
@@ -103,7 +103,7 @@ if (!isset($admin_id)) {
             $numbers_of_likes = $select_likes->rowCount();
             ?>
             <h3><?= $numbers_of_likes; ?></h3>
-            <p>totale likt</p>
+            <p>likes på dine innlegg</p>
             <a href="view_posts.php" class="btn">se innlegg</a>
          </div>
       </div>

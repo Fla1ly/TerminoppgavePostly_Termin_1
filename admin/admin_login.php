@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
    ?>
    <section class="form-container">
       <form action="" method="POST">
-         <p>default username = <span>admin</span> & password = <span>111</span></p>
+         <p>standard brukernavn = <span>creator</span> & passord = <span>pass</span></p>
          <h3>logg inn</h3>
          <input type="text" name="name" maxlength="20" required placeholder="brukernavn" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
          <input type="password" name="pass" maxlength="20" required placeholder="passord" class="box" oninput="this.value = this.value.replace(/\s/g, '')">

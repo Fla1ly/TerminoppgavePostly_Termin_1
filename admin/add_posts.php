@@ -114,18 +114,18 @@ if (isset($_POST['draft'])) {
       <h1 class="heading">legg til ny innlegg</h1>
       <form action="" method="post" enctype="multipart/form-data">
          <input type="hidden" name="name" value="<?= $fetch_profile['name']; ?>">
-         <p>publiser tittel<span>*</span></p>
+         <p>innlegg tittel<span>*</span></p>
          <input type="text" name="title" maxlength="100" required placeholder="legg til tittel" class="box">
-         <p>publiser innlegg <span>*</span></p>
-         <textarea name="content" class="box" required maxlength="10000" placeholder="skriv ditt innlegg..." cols="30" rows="10"></textarea>
-         <p>publiser kategori <span>*</span></p>
+         <p>innlegg innhold<span>*</span></p>
+         <textarea name="content" class="box" required maxlength="10000" placeholder="skriv ditt innhold..." cols="30" rows="10"></textarea>
+         <p>innlegg kategori <span>*</span></p>
          <select name="category" class="box" required>
             <option value="" selected disabled>-- velg kategori* </option>
             <option value="nature">natur</option>
             <option value="education">utdanning</option>
-            <option value="pets and animals">dyr og dyr</option>
+            <option value="pets and animals">dyr</option>
             <option value="technology">teknologi</option>
-            <option value="fashion">mote</option>
+            <option value="fashion">fashion</option>
             <option value="entertainment">underholdning</option>
             <option value="movies and animations">filmer</option>
             <option value="gaming">spill</option>
@@ -139,15 +139,15 @@ if (isset($_POST['draft'])) {
             <option value="lifestyle">livsstil</option>
             <option value="personal">personlig</option>
             <option value="health and fitness">helse og trening</option>
-            <option value="business">forretning</option>
+            <option value="business">buisness</option>
             <option value="shopping">shopping</option>
             <option value="animations">animasjoner</option>
          </select>
-         <p>publiser innlegg</p>
+         <p>banner bilde til innlegget</p>
          <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp">
          <div class="flex-btn">
             <input type="submit" value="publiser innlegg" name="publish" class="btn">
-            <input type="submit" value="publiser innlegg" name="draft" class="option-btn">
+            <input type="submit" value="lagre utkast" name="draft" class="option-btn">
          </div>
       </form>
    </section>

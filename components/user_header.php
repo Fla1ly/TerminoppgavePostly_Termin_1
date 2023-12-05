@@ -35,7 +35,7 @@ if (isset($message)) {
          <a href="all_category.php"> <i class="fas fa-angle-right"></i> Kategorier</a>
          <a href="authors.php"> <i class="fas fa-angle-right"></i> Forfattere</a>
          <a href="login.php"> <i class="fas fa-angle-right"></i> Logg inn</a>
-         <a href="register.php"> <i class="fas fa-angle-right"></i> Registrer</a>
+         <a href="register.php"> <i class="fas fa-angle-right"></i> Registrering</a>
       </nav>
 
       <div class="profile">
@@ -48,7 +48,7 @@ if (isset($message)) {
             <p class="name"><?= $fetch_profile['name']; ?></p>
             <a href="update.php" class="btn">Oppdater profil</a>
             <div class="flex-btn">
-               <a href="login.php" class="option-btn">loggin</a>
+               <a href="login.php" class="option-btn">logginn</a>
                <a href="register.php" class="option-btn">registrer</a>
             </div>
             <a href="components/user_logout.php" onclick="return confirm('Logg ut fra Postly?');" class="delete-btn">logg ut</a>
@@ -56,7 +56,7 @@ if (isset($message)) {
          } else {
          ?>
             <p class="name">Du må logge inn først</p>
-            <a href="login.php" class="option-btn">logg in</a>
+            <a href="login.php" class="option-btn">login</a>
          <?php
          }
          ?>

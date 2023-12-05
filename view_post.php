@@ -27,11 +27,11 @@ if (isset($_POST['add_comment'])) {
    $verify_comment->execute([$get_id, $admin_id, $user_id, $user_name, $comment]);
 
    if ($verify_comment->rowCount() > 0) {
-      $message[] = 'comment already added!';
+      $message[] = 'kommentar allerede lagt til!';
    } else {
       $insert_comment = $conn->prepare("INSERT INTO `comments`(post_id, admin_id, user_id, user_name, comment) VALUES(?,?,?,?,?)");
       $insert_comment->execute([$get_id, $admin_id, $user_id, $user_name, $comment]);
-      $message[] = 'new comment added!';
+      $message[] = 'ny kommentar lagt til!';
    }
 }
 
@@ -45,11 +45,11 @@ if (isset($_POST['edit_comment'])) {
    $verify_comment->execute([$comment_edit_box, $edit_comment_id]);
 
    if ($verify_comment->rowCount() > 0) {
-      $message[] = 'comment already added!';
+      $message[] = 'kommentar allerede lagt til!';
    } else {
       $update_comment = $conn->prepare("UPDATE `comments` SET comment = ? WHERE id = ?");
       $update_comment->execute([$comment_edit_box, $edit_comment_id]);
-      $message[] = 'your comment edited successfully!';
+      $message[] = 'kommentaren din ble redigert!';
    }
 }
 
@@ -58,7 +58,7 @@ if (isset($_POST['delete_comment'])) {
    $delete_comment_id = filter_var($delete_comment_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    $delete_comment = $conn->prepare("DELETE FROM `comments` WHERE id = ?");
    $delete_comment->execute([$delete_comment_id]);
-   $message[] = 'comment deleted successfully!';
+   $message[] = 'kommentar slettet!';
 }
 
 ?>
@@ -93,8 +93,8 @@ if (isset($_POST['delete_comment'])) {
          <form action="" method="POST">
             <input type="hidden" name="edit_comment_id" value="<?= $comment_id; ?>">
             <textarea name="comment_edit_box" required cols="30" rows="10" placeholder="please enter your comment"><?= $fetch_edit_comment['comment']; ?></textarea>
-            <button type="submit" class="inline-btn" name="edit_comment">edit comment</button>
-            <div class="inline-option-btn" onclick="window.location.href = 'view_post.php?post_id=<?= $get_id; ?>';">cancel edit</div>
+            <button type="submit" class="inline-btn" name="edit_comment">rediger kommentar</button>
+            <div class="inline-option-btn" onclick="window.location.href = 'view_post.php?post_id=<?= $get_id; ?>';">avbryt redigering</div>
          </form>
       </section>
    <?php
@@ -180,7 +180,7 @@ if (isset($_POST['delete_comment'])) {
       <?php
       }
       ?>
-      <p class="comment-title">legg til kommentar</p>
+      <p class="comment-title">kommentarer: </p>
       <div class="user-comments-container">
          <?php
          $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE post_id = ?");

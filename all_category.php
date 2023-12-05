@@ -29,7 +29,7 @@ include 'components/like_post.php';
 <body>
    <?php include 'components/user_header.php'; ?>
    <section class="categories">
-      <h1 class="heading">postkategorier</h1>
+      <h1 class="heading">kategorier</h1>
       <div class="box-container">
          <div class="box"><a href="category.php?category=nature">natur</a></div>
          <div class="box"><a href="category.php?category=eduction">utdanning</a></div>
