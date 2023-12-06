@@ -144,10 +144,10 @@ include 'components/like_post.php';
                   <!-- Viser brukerprofilinformasjon -->
                   <p> Velkommen <span><?= $fetch_profile['name']; ?></span></p>
                   <p> Kommentarer: <span><?= $total_user_comments; ?></span></p>
-                  <p> Liker innlegg: <span><?= $total_user_likes; ?></span></p>
+                  <p> Likte innlegg: <span><?= $total_user_likes; ?></span></p>
                   <a href="update.php" class="btn">Oppdater profil</a>
                   <div class="flex-btn">
-                     <a href="user_likes.php" class="option-btn">Liker</a>
+                     <a href="user_likes.php" class="option-btn">Likte</a>
                      <a href="user_comments.php" class="option-btn">Kommentarer</a>
                   </div>
                <?php
