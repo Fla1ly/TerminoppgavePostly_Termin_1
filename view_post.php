@@ -1,21 +1,27 @@
 <?php
 
+// Inkluderer tilkoblingsfilen for å koble til databasen
 include 'components/connect.php';
 
+// Starter sesjonen for å kunne lagre brukerinformasjon
 session_start();
 
+// Sjekker om brukeren allerede er logget inn ved å se etter bruker-ID i sesjonen
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
+   // Hvis ikke, setter bruker-ID til tom streng
    $user_id = '';
-};
+}
 
+// Inkluderer filen for å behandle likes på innlegg
 include 'components/like_post.php';
 
+// Henter post-ID fra URL-parameteren
 $get_id = $_GET['post_id'];
 
+// Legger til kommentar hvis skjemaet er sendt
 if (isset($_POST['add_comment'])) {
-
    $admin_id = $_POST['admin_id'];
    $admin_id = filter_var($admin_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    $user_name = $_POST['user_name'];
@@ -23,42 +29,48 @@ if (isset($_POST['add_comment'])) {
    $comment = $_POST['comment'];
    $comment = filter_var($comment, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+   // Verifiserer om kommentaren allerede eksisterer
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE post_id = ? AND admin_id = ? AND user_id = ? AND user_name = ? AND comment = ?");
    $verify_comment->execute([$get_id, $admin_id, $user_id, $user_name, $comment]);
 
    if ($verify_comment->rowCount() > 0) {
-      $message[] = 'kommentar allerede lagt til!';
+      $message[] = 'Kommentar allerede lagt til!';
    } else {
-      $insert_comment = $conn->prepare("INSERT INTO `comments`(post_id, admin_id, user_id, user_name, comment) VALUES(?,?,?,?,?)");
+      // Legger til ny kommentar i databasen
+      $insert_comment = $conn->prepare("INSERT INTO `comments` (post_id, admin_id, user_id, user_name, comment) VALUES (?,?,?,?,?)");
       $insert_comment->execute([$get_id, $admin_id, $user_id, $user_name, $comment]);
-      $message[] = 'ny kommentar lagt til!';
+      $message[] = 'Ny kommentar lagt til!';
    }
 }
 
+// Redigerer kommentar hvis skjemaet er sendt
 if (isset($_POST['edit_comment'])) {
    $edit_comment_id = $_POST['edit_comment_id'];
    $edit_comment_id = filter_var($edit_comment_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    $comment_edit_box = $_POST['comment_edit_box'];
    $comment_edit_box = filter_var($comment_edit_box, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+   // Verifiserer om den redigerte kommentaren allerede eksisterer
    $verify_comment = $conn->prepare("SELECT * FROM `comments` WHERE comment = ? AND id = ?");
    $verify_comment->execute([$comment_edit_box, $edit_comment_id]);
 
    if ($verify_comment->rowCount() > 0) {
-      $message[] = 'kommentar allerede lagt til!';
+      $message[] = 'Kommentar allerede lagt til!';
    } else {
+      // Oppdaterer kommentaren i databasen
       $update_comment = $conn->prepare("UPDATE `comments` SET comment = ? WHERE id = ?");
       $update_comment->execute([$comment_edit_box, $edit_comment_id]);
-      $message[] = 'kommentaren din ble redigert!';
+      $message[] = 'Kommentaren din ble redigert!';
    }
 }
 
+// Sletter kommentar hvis skjemaet er sendt
 if (isset($_POST['delete_comment'])) {
    $delete_comment_id = $_POST['comment_id'];
    $delete_comment_id = filter_var($delete_comment_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    $delete_comment = $conn->prepare("DELETE FROM `comments` WHERE id = ?");
    $delete_comment->execute([$delete_comment_id]);
-   $message[] = 'kommentar slettet!';
+   $message[] = 'Kommentar slettet!';
 }
 
 ?>
@@ -79,22 +91,24 @@ if (isset($_POST['delete_comment'])) {
 <body>
    <?php include 'components/user_header.php'; ?>
    <?php
+   // Viser redigeringsformen for kommentarer hvis skjemaet er sendt
    if (isset($_POST['open_edit_box'])) {
       $comment_id = $_POST['comment_id'];
       $comment_id = filter_var($comment_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    ?>
       <section class="comment-edit-form">
-         <p>rediger din kommentar</p>
+         <p>Rediger din kommentar</p>
          <?php
+         // Henter den redigerte kommentaren basert på kommentar-ID
          $select_edit_comment = $conn->prepare("SELECT * FROM `comments` WHERE id = ?");
          $select_edit_comment->execute([$comment_id]);
          $fetch_edit_comment = $select_edit_comment->fetch(PDO::FETCH_ASSOC);
          ?>
          <form action="" method="POST">
             <input type="hidden" name="edit_comment_id" value="<?= $comment_id; ?>">
-            <textarea name="comment_edit_box" required cols="30" rows="10" placeholder="please enter your comment"><?= $fetch_edit_comment['comment']; ?></textarea>
-            <button type="submit" class="inline-btn" name="edit_comment">rediger kommentar</button>
-            <div class="inline-option-btn" onclick="window.location.href = 'view_post.php?post_id=<?= $get_id; ?>';">avbryt redigering</div>
+            <textarea name="comment_edit_box" required cols="30" rows="10" placeholder="Please enter your comment"><?= $fetch_edit_comment['comment']; ?></textarea>
+            <button type="submit" class="inline-btn" name="edit_comment">Rediger kommentar</button>
+            <div class="inline-option-btn" onclick="window.location.href = 'view_post.php?post_id=<?= $get_id; ?>';">Avbryt redigering</div>
          </form>
       </section>
    <?php
@@ -103,6 +117,7 @@ if (isset($_POST['delete_comment'])) {
    <section class="posts-container" style="padding-bottom: 0;">
       <div class="box-container">
          <?php
+         // Henter innlegget basert på post-ID og status
          $select_posts = $conn->prepare("SELECT * FROM `posts` WHERE status = ? AND id = ?");
          $select_posts->execute(['active', $get_id]);
          if ($select_posts->rowCount() > 0) {
@@ -110,14 +125,17 @@ if (isset($_POST['delete_comment'])) {
 
                $post_id = $fetch_posts['id'];
 
+               // Henter antall kommentarer for innlegget
                $count_post_comments = $conn->prepare("SELECT * FROM `comments` WHERE post_id = ?");
                $count_post_comments->execute([$post_id]);
                $total_post_comments = $count_post_comments->rowCount();
 
+               // Henter antall likes for innlegget
                $count_post_likes = $conn->prepare("SELECT * FROM `likes` WHERE post_id = ?");
                $count_post_likes->execute([$post_id]);
                $total_post_likes = $count_post_likes->rowCount();
 
+               // Bekrefter om brukeren har likt innlegget
                $confirm_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ? AND post_id = ?");
                $confirm_likes->execute([$user_id, $post_id]);
          ?>
@@ -141,23 +159,24 @@ if (isset($_POST['delete_comment'])) {
                   <div class="post-title"><?= $fetch_posts['title']; ?></div>
                   <div class="post-content"><?= $fetch_posts['content']; ?></div>
                   <div class="icons">
-                     <div><i class="fas fa-comment"></i><span>(<?= $total_post_comments; ?>)</span></div>
+                     <div><i class="fas fa-comment"></i><span><?= $total_post_comments; ?></span></div>
                      <button type="submit" name="like_post"><i class="fas fa-heart" style="<?php if ($confirm_likes->rowCount() > 0) {
                                                                                                 echo 'color:var(--red);';
-                                                                                             } ?>  "></i><span>(<?= $total_post_likes; ?>)</span></button>
+                                                                                             } ?>  "></i><span><?= $total_post_likes; ?></span></button>
                   </div>
                </form>
          <?php
             }
          } else {
-            echo '<p class="empty">ingen innlegg ble funnet!</p>';
+            echo '<p class="empty">Ingen innlegg ble funnet!</p>';
          }
          ?>
       </div>
    </section>
    <section class="comments-container">
-      <p class="comment-title">legg til kommentar</p>
+      <p class="comment-title">Legg til kommentar</p>
       <?php
+      // Viser kommentarskjemaet hvis brukeren er logget inn
       if ($user_id != '') {
          $select_admin_id = $conn->prepare("SELECT * FROM `posts` WHERE id = ?");
          $select_admin_id->execute([$get_id]);
@@ -167,22 +186,23 @@ if (isset($_POST['delete_comment'])) {
             <input type="hidden" name="admin_id" value="<?= $fetch_admin_id['admin_id']; ?>">
             <input type="hidden" name="user_name" value="<?= $fetch_profile['name']; ?>">
             <p class="user"><i class="fas fa-user"></i><a href="update.php"><?= $fetch_profile['name']; ?></a></p>
-            <textarea name="comment" maxlength="1000" class="comment-box" cols="30" rows="10" placeholder="skriv din kommentar" required></textarea>
-            <input type="submit" value="legg til kommentar" class="inline-btn" name="add_comment">
+            <textarea name="comment" maxlength="1000" class="comment-box" cols="30" rows="10" placeholder="Skriv din kommentar" required></textarea>
+            <input type="submit" value="Legg til kommentar" class="inline-btn" name="add_comment">
          </form>
       <?php
       } else {
       ?>
          <div class="add-comment">
             <p>Vennligst logg inn for å legge til eller redigere din kommentar</p>
-            <a href="login.php" class="inline-btn">logg inn</a>
+            <a href="login.php" class="inline-btn">Logg inn</a>
          </div>
       <?php
       }
       ?>
-      <p class="comment-title">kommentarer: </p>
+      <p class="comment-title">Kommentarer:</p>
       <div class="user-comments-container">
          <?php
+         // Henter kommentarene for det aktuelle innlegget
          $select_comments = $conn->prepare("SELECT * FROM `comments` WHERE post_id = ?");
          $select_comments->execute([$get_id]);
          if ($select_comments->rowCount() > 0) {
@@ -202,12 +222,13 @@ if (isset($_POST['delete_comment'])) {
                                                       echo 'color:var(--white); background:var(--black);';
                                                    } ?>"><?= $fetch_comments['comment']; ?></div>
                   <?php
+                  // Viser redigerings- og slettemuligheter hvis kommentaren tilhører brukeren
                   if ($fetch_comments['user_id'] == $user_id) {
                   ?>
                      <form action="" method="POST">
                         <input type="hidden" name="comment_id" value="<?= $fetch_comments['id']; ?>">
-                        <button type="submit" class="inline-option-btn" name="open_edit_box">rediger kommentar</button>
-                        <button type="submit" class="inline-delete-btn" name="delete_comment" onclick="return confirm('slett denne kommentar?');">slett kommentar</button>
+                        <button type="submit" class="inline-option-btn" name="open_edit_box">Rediger kommentar</button>
+                        <button type="submit" class="inline-delete-btn" name="delete_comment" onclick="return confirm('Slett denne kommentaren?');">Slett kommentar</button>
                      </form>
                   <?php
                   }
@@ -216,7 +237,7 @@ if (isset($_POST['delete_comment'])) {
          <?php
             }
          } else {
-            echo '<p class="empty">ingen kommentar ble lagd til ennå!</p>';
+            echo '<p class="empty">Ingen kommentar ble lagt til ennå!</p>';
          }
          ?>
       </div>

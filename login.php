@@ -1,31 +1,45 @@
 <?php
 
+// Inkluderer tilkoblingsfilen for å koble til databasen
 include 'components/connect.php';
 
+// Starter sesjonen for å kunne lagre brukerinformasjon
 session_start();
 
+// Sjekker om brukeren allerede er logget inn ved å se etter bruker-ID i sesjonen
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
+   // Hvis ikke, setter bruker-ID til tom streng
    $user_id = '';
-};
+}
 
+// Sjekker om skjemaet er sendt inn (når brukeren trykker på "Logg inn"-knappen)
 if (isset($_POST['submit'])) {
 
+   // Henter og sanerer e-postadresse fra skjemaet
    $email = $_POST['email'];
    $email = filter_var($email, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+   // Henter og hasher passordet ved hjelp av SHA-1 (Merk: anbefales å bruke sikrere hash-algoritmer som bcrypt)
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+   // Forbereder og utfører spørringen for å hente brukerinformasjon basert på e-post og passord
    $select_user = $conn->prepare("SELECT * FROM `users` WHERE email = ? AND password = ?");
    $select_user->execute([$email, $pass]);
+
+   // Henter raden med brukerinformasjon fra resultatsettet
    $row = $select_user->fetch(PDO::FETCH_ASSOC);
 
+   // Sjekker om brukeren ble funnet og passordet er korrekt
    if ($select_user->rowCount() > 0) {
+      // Lagrer bruker-ID i sesjonen og sender brukeren til hjemmesiden
       $_SESSION['user_id'] = $row['id'];
       header('location:home.php');
    } else {
-      $message[] = 'feil brukernavn eller passord!';
+      // Hvis brukeren ikke ble funnet, legg til feilmelding i meldingsarrayet
+      $message[] = 'Feil brukernavn eller passord!';
    }
 }
 
@@ -46,14 +60,20 @@ if (isset($_POST['submit'])) {
 <body>
    <?php include 'components/user_header.php'; ?>
    <section class="form-container">
+      <!-- Skjema for innlogging -->
       <form action="" method="post">
-         <h3>logg inn</h3>
-         <input type="email" name="email" required placeholder="email" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="password" name="pass" required placeholder="passord" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="submit" value="logg inn" name="submit" class="btn">
-         <p>har du ikke konto? <a href="register.php">registrer deg</a></p>
+         <h3>Logg inn</h3>
+         <!-- Inntastingsfelt for e-post -->
+         <input type="email" name="email" required placeholder="E-post" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+         <!-- Inntastingsfelt for passord -->
+         <input type="password" name="pass" required placeholder="Passord" class="box" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')">
+         <!-- Innsending av skjema -->
+         <input type="submit" value="Logg inn" name="submit" class="btn">
+         <!-- Lenke for registrering hvis brukeren ikke har konto -->
+         <p>Har du ikke konto? <a href="register.php">Registrer deg</a></p>
       </form>
    </section>
+   <!-- Inkluderer JavaScript-filen -->
    <script src="js/script.js"></script>
 </body>
 

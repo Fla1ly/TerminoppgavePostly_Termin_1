@@ -1,66 +1,84 @@
 <?php
 
+// Inkluderer tilkoblingsfilen for å koble til databasen
 include '../components/connect.php';
 
+// Starter sesjonen for å kunne lagre admininformasjon
 session_start();
 
+// Henter admin-ID fra sesjonen
 $admin_id = $_SESSION['admin_id'];
 
+// Sjekker om admin-ID er satt i sesjonen, ellers omdirigerer til innloggingssiden
 if (!isset($admin_id)) {
    header('location:admin_login.php');
 }
 
+// Sjekker om skjemainnsendingen er for lagring av innlegg
 if (isset($_POST['save'])) {
 
+   // Henter innleggets ID fra URL-parametere
    $post_id = $_GET['id'];
-   $title = $_POST['title'];
-   $title = filter_var($title, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-   $content = $_POST['content'];
-   $content = filter_var($content, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-   $category = $_POST['category'];
-   $category = filter_var($category, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-   $status = $_POST['status'];
-   $status = filter_var($status, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+   // Filtrerer og lagrer innleggets tittel, innhold, kategori og status fra skjemainndata
+   $title = filter_var($_POST['title'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+   $content = filter_var($_POST['content'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+   $category = filter_var($_POST['category'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+   $status = filter_var($_POST['status'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+   // Forbereder og utfører SQL-spørringen for å oppdatere innlegget i databasen
    $update_post = $conn->prepare("UPDATE `posts` SET title = ?, content = ?, category = ?, status = ? WHERE id = ?");
    $update_post->execute([$title, $content, $category, $status, $post_id]);
 
-   $message[] = 'post updated!';
+   // Legger til en melding om at innlegget er oppdatert
+   $message[] = 'Innlegg oppdatert!';
 
+   // Henter informasjon om det gamle bildet
    $old_image = $_POST['old_image'];
+
+   // Henter informasjon om det opplastede bildet
    $image = $_FILES['image']['name'];
    $image = filter_var($image, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    $image_size = $_FILES['image']['size'];
    $image_tmp_name = $_FILES['image']['tmp_name'];
    $image_folder = '../uploaded_img/' . $image;
 
+   // Forbereder en spørring for å sjekke om bildet allerede eksisterer for admin-ID
    $select_image = $conn->prepare("SELECT * FROM `posts` WHERE image = ? AND admin_id = ?");
    $select_image->execute([$image, $admin_id]);
 
+   // Sjekker om et nytt bilde er lastet opp
    if (!empty($image)) {
+      // Sjekker størrelsen på bildet
       if ($image_size > 2000000) {
-         $message[] = 'bilde er for stort!';
+         $message[] = 'Bildet er for stort!';
       } elseif ($select_image->rowCount() > 0 and $image != '') {
-         $message[] = 'endre navn på bilde!';
+         $message[] = 'Endre navn på bildet!';
       } else {
+         // Forbereder og utfører SQL-spørringen for å oppdatere bildet i databasen
          $update_image = $conn->prepare("UPDATE `posts` SET image = ? WHERE id = ?");
          move_uploaded_file($image_tmp_name, $image_folder);
          $update_image->execute([$image, $post_id]);
+         // Sjekker om det gamle bildet eksisterer og sletter det
          if ($old_image != $image and $old_image != '') {
             unlink('../uploaded_img/' . $old_image);
          }
-         $message[] = 'bilde oppdatert!';
+         $message[] = 'Bildet oppdatert!';
       }
    }
 }
 
+// Sjekker om skjemainnsendingen er for sletting av innlegg
 if (isset($_POST['delete_post'])) {
 
+   // Henter innleggets ID fra skjemainndata
    $post_id = $_POST['post_id'];
-   $post_id = filter_var($post_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+   // Forbereder og utfører SQL-spørringer for å slette innlegget og tilhørende kommentarer
    $delete_image = $conn->prepare("SELECT * FROM `posts` WHERE id = ?");
    $delete_image->execute([$post_id]);
    $fetch_delete_image = $delete_image->fetch(PDO::FETCH_ASSOC);
+   // Sjekker om det er et bilde knyttet til innlegget og sletter det
    if ($fetch_delete_image['image'] != '') {
       unlink('../uploaded_img/' . $fetch_delete_image['image']);
    }
@@ -68,25 +86,34 @@ if (isset($_POST['delete_post'])) {
    $delete_post->execute([$post_id]);
    $delete_comments = $conn->prepare("DELETE FROM `comments` WHERE post_id = ?");
    $delete_comments->execute([$post_id]);
-   $message[] = 'innleg slettet!';
+
+   // Legger til en melding om at innlegget er slettet
+   $message[] = 'Innlegget slettet!';
 }
 
+// Sjekker om skjemainnsendingen er for sletting av bilde
 if (isset($_POST['delete_image'])) {
 
+   // Setter en tom streng for å fjerne bildet
    $empty_image = '';
+
+   // Henter innleggets ID fra skjemainndata
    $post_id = $_POST['post_id'];
-   $post_id = filter_var($post_id, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+   // Forbereder og utfører SQL-spørringer for å slette bildet og oppdatere innlegget
    $delete_image = $conn->prepare("SELECT * FROM `posts` WHERE id = ?");
    $delete_image->execute([$post_id]);
    $fetch_delete_image = $delete_image->fetch(PDO::FETCH_ASSOC);
+   // Sjekker om det er et bilde knyttet til innlegget og sletter det
    if ($fetch_delete_image['image'] != '') {
       unlink('../uploaded_img/' . $fetch_delete_image['image']);
    }
    $unset_image = $conn->prepare("UPDATE `posts` SET image = ? WHERE id = ?");
    $unset_image->execute([$empty_image, $post_id]);
-   $message[] = 'bilde slettet!';
-}
 
+   // Legger til en melding om at bildet er slettet
+   $message[] = 'Bildet slettet!';
+}
 
 ?>
 

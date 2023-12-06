@@ -1,272 +1,322 @@
+/* Importerer Google Fonts-stilen for Montserrat */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
 
-:root{
-   --main-color:#161A30;
-   --red:#e74c3c;
-   --orange:#FF9209;
-   --black:#31304D;
-   --white:#fff;
-   --light-bg:#f5f5f5;
-   --light-color:#999;
-   --border:.2rem solid var(--black);
-   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+/* Definisjoner av fargevariabler som brukes gjennom hele stilen */
+:root {
+   --main-color: #161A30;
+   --red: #e74c3c;
+   --orange: #2779a7;
+   --black: #31304D;
+   --white: #fff;
+   --light-bg: #f5f5f5;
+   --light-color: #999;
+   --border: .2rem solid var(--black);
+   --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .1);
 }
 
-*{
+/* Generelle stilelementer som gjelder for hele dokumentet */
+* {
    font-family: 'Montserrat', sans-serif;
-   margin:0; padding:0;
+   margin: 0;
+   padding: 0;
    box-sizing: border-box;
    text-decoration: none;
-   outline: none; border:none;
+   outline: none;
+   border: none;
 }
 
-*::selection{
-   color:var(--white);
+/* Stil for tekst som er markert av brukeren */
+*::selection {
+   color: var(--white);
    background-color: var(--main-color);
 }
 
-::-webkit-scrollbar{
+/* Tilpassing av rullefeltet for WebKit-baserte nettlesere */
+::-webkit-scrollbar {
    width: 1rem;
    height: .5rem;
 }
 
-::-webkit-scrollbar-track{
-  background-color: none;
+/* Utseende til rullefeltets spor */
+::-webkit-scrollbar-track {
+   background-color: none;
 }
 
-::-webkit-scrollbar-thumb{
+/* Utseende til rullefeltets tommel */
+::-webkit-scrollbar-thumb {
    background-color: var(--main-color);
 }
 
-html{
+/* Generelle stiler for HTML og kroppen */
+html {
    font-size: 62.5%;
    overflow-x: hidden;
 }
 
-body{
-   background-color: var(--light-bg);
-   /* padding-bottom: 7rem; */
+body {
+   background-image: url(../images/background1.jpg);
+   background-size: cover;
+   background-repeat: no-repeat;
    padding-left: 35rem;
 }
 
-section{
+/* Stil for seksjoner i dokumentet */
+section {
    max-width: 1200px;
-   margin:0 auto;
-   padding:2rem;
+   margin: 0 auto;
+   padding: 2rem;
 }
 
+/* Stil for knapper og lignende interaktive elementer */
 .btn,
 .delete-btn,
 .option-btn,
 .inline-btn,
 .inline-option-btn,
-.inline-delete-btn{
+.inline-delete-btn {
    margin-top: 1rem;
    cursor: pointer;
    font-size: 1.8rem;
-   color:var(--white);
-   padding:1.2rem 3rem;
+   color: var(--white);
+   padding: 1.2rem 3rem;
    text-transform: capitalize;
    text-align: center;
 }
 
+/* Spesielle stiler for knapper plassert i linje (inline) */
 .inline-btn,
 .inline-option-btn,
-.inline-delete-btn{
+.inline-delete-btn {
    display: inline-block;
    margin-right: 1rem;
 }
 
+/* Generell stil for knapper som kan være blokk eller i linje */
 .btn,
 .delete-btn,
-.option-btn{
+.option-btn {
    display: block;
    width: 100%;
 }
 
+/* Fargevarianter for ulike typer knapper */
 .inline-btn,
-.btn{
+.btn {
    background-color: var(--main-color);
 }
 
 .inline-delete-btn,
-.delete-btn{
+.delete-btn {
    background-color: var(--red);
 }
 
 .inline-option-btn,
-.option-btn{
+.option-btn {
    background-color: var(--orange);
 }
 
+/* Stiler for knappenes hover-effekter */
 .btn:hover,
 .delete-btn:hover,
 .option-btn:hover,
 .inline-btn:hover,
 .inline-delete-btn:hover,
-.inline-option-btn:hover{
+.inline-option-btn:hover {
    background-color: var(--black);
 }
 
-.flex-btn{
+/* Stil for fleksible (flex) knapper med mellomrom mellom dem */
+.flex-btn {
    display: flex;
-   gap:1rem;
+   gap: 1rem;
 }
 
-.message{
+/* Stil for meldingsboksen øverst på siden */
+.message {
    position: sticky;
-   top:0;
-   margin:0 auto;
-   background-color: var(--white);
-   padding:2rem;
+   top: 0;
+   margin: 0 auto;
+   background-color: #ffffffa5;
+   backdrop-filter: blur(10px);
+   padding: 2rem;
    display: flex;
    align-items: center;
-   gap:1rem;
+   gap: 1rem;
    justify-content: space-between;
    box-shadow: var(--box-shadow);
-   border-bottom:var(--border);
+   border-bottom: var(--border);
 }
 
-.message span{
+/* Stil for meldingens tekstelementer */
+.message span {
    font-size: 2rem;
-   color:var(--black);
+   color: var(--black);
 }
 
-.message i{
+.message i {
    font-size: 2.5rem;
-   color:var(--red);
+   color: var(--red);
    cursor: pointer;
 }
 
-.message i:hover{
-   color:var(--black);
+.message i:hover {
+   color: var(--black);
 }
 
-.heading{
+/* Stil for overskrifter i dokumentet */
+.heading {
    text-align: center;
    margin-bottom: 2rem;
    text-transform: capitalize;
-   color:var(--black);
+   color: var(--black);
    font-size: 3rem;
 }
 
-.empty{
-   border:var(--border);
-   background-color: var(--white);
-   padding:1.5rem;
+/* Stil for boksen som vises når det ikke er innhold */
+.empty {
+   border: var(--border);
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
+   padding: 1.5rem;
    text-align: center;
    width: 100%;
    font-size: 2rem;
    text-transform: capitalize;
-   color:var(--red);
+   color: var(--red);
    box-shadow: var(--box-shadow);
 }
 
-.form-container{
+/* Stil for konteineren som inneholder skjemaet */
+.form-container {
    display: flex;
    align-items: center;
    justify-content: center;
-   min-height: 100vh;
+   min-height: calc(100vh - 5rem);
 }
 
-.form-container form{
-   background-color: var(--white);
-   border:var(--border);
+/* Stil for tekstelementer i skjemakonteineren */
+.form-container span {
+   font-size: 2rem;
+   color: #fff;
+}
+
+/* Stil for selve skjemaet */
+.form-container form {
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
    box-shadow: var(--box-shadow);
-   padding:2rem;
+   padding: 2rem;
    text-align: center;
    width: 50rem;
 }
 
-.form-container form h3{
+/* Stil for overskriftene i skjemaet */
+.form-container form h3 {
    font-size: 2.5rem;
-   color:var(--black);
-   text-transform: capitalize;
+   color: var(--black);
+   text-transform: uppercase;
    margin-bottom: 1rem;
 }
 
-.form-container form p{
-   margin:1rem 0;
+/* Stil for tekstelementer i skjemaet */
+.form-container form p {
+   padding-top: 1.5rem;
    font-size: 1.9rem;
-   color:var(--light-color);
+   color: var(--black);
 }
 
-.form-container form p span{
-   color:var(--main-color);
+/* Stil for lenker i skjemaet */
+.form-container form p a {
+   color: #003a5b;
 }
 
-.form-container form .box{
+/* Stil for hover-effekter på lenker i skjemaet */
+.form-container form p a:hover {
+   text-decoration: underline;
+   color: var(--black);
+}
+
+/* Stil for bokser i skjemaet */
+.form-container form .box {
    width: 100%;
-   background-color: var(--light-bg);
-   padding:1.4rem;
+   background-color: rgba(238, 238, 238, 0.601);
+   backdrop-filter: blur(10px);
+   padding: 1.4rem;
    font-size: 1.4rem;
-   color:var(--black);
-   margin:1rem 0;
-   border:var(--border);
+   color: var(--black);
+   margin: 1rem 0;
    font-size: 1.8rem;
 }
 
-.header{
+/* Stil for den faste menyen til venstre på siden */
+.header {
    position: fixed;
-   top:0; left:0;
-   background-color: var(--white);
+   top: 0;
+   left: 0;
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
    z-index: 1000;
    border-right: var(--border);
    width: 35rem;
-   padding:2rem;
+   padding: 2rem;
    min-height: 100vh;
    text-align: center;
 }
 
-.header .logo{
+/* Stil for logoen i den faste menyen */
+.header .logo {
    font-size: 2.5rem;
-   color:var(--black);
+   color: var(--black);
 }
 
-.header .logo span{
-   color:var(--main-color);
+.header .logo span {
+   color: var(--main-color);
 }
 
-.header .profile{
-   padding:2rem;
-   background-color: var(--light-bg);
-   margin:2rem 0;
-   border:var(--border);
+/* Stil for profilinformasjonen i den faste menyen */
+.header .profile {
+   padding: 2rem;
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
+   border: 2px solid #f5f5f5;
+   margin: 2rem 0;
 }
 
-.header .profile p{
+.header .profile p {
    margin-bottom: 1.5rem;
    font-size: 2rem;
-   color:var(--black);
+   color: var(--black);
 }
 
-.header .navbar{
-   padding:1rem;
+/* Stil for navigasjonslenkene i den faste menyen */
+.header .navbar {
+   padding: 1rem;
 }
 
-.header .navbar a{
+.header .navbar a {
    display: block;
-   padding:2rem 0;
+   padding: 2rem 0;
    font-size: 2rem;
-   color:var(--black);
+   color: var(--black);
    text-align: left;
 }
 
-.header .navbar a i{
+.header .navbar a i {
    margin-right: 1.5rem;
-   color:var(--main-color);
+   color: var(--main-color);
    transition: .2s linear;
 }
 
-.header .navbar a:hover i{
+.header .navbar a:hover i {
    margin-right: 3rem;
 }
 
-#menu-btn{
+/* Stil for menyknappen som vises på små skjermer */
+#menu-btn {
    display: none;
-   border:var(--border);
+   border: var(--border);
    background-color: var(--white);
-   color:var(--black);
+   color: var(--black);
    cursor: pointer;
    box-shadow: var(--border);
    height: 4.5rem;
@@ -274,402 +324,435 @@ section{
    width: 4.5rem;
    font-size: 2rem;
    position: sticky;
-   top:1rem; left: 1rem;
+   top: 1rem;
+   left: 1rem;
    z-index: 10000;
    text-align: center;
 }
 
-#menu-btn:hover{
+/* Stil for hover-effekter på menyknappen */
+#menu-btn:hover {
    background-color: var(--black);
-   color:var(--white);
+   color: var(--white);
 }
 
-.dashboard .box-container{
+/* Stil for konteineren som inneholder boksene på dashbordet */
+.dashboard .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-   gap:1.5rem;
+   gap: 1.5rem;
    align-items: flex-start;
 }
 
-.dashboard .box-container .box{
+/* Stil for hver boks på dashbordet */
+.dashboard .box-container .box {
    text-align: center;
-   background-color: var(--white);
-   border:var(--border);
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
    box-shadow: var(--box-shadow);
    text-align: center;
-   padding:1.5rem;
+   padding: 1.5rem;
 }
 
-.dashboard .box-container .box h3{
+/* Stil for overskriften til hver boks på dashbordet */
+.dashboard .box-container .box h3 {
    font-size: 2.7rem;
-   color:var(--black);
+   color: var(--black);
 }
 
-.dashboard .box-container .box h3 span{
+.dashboard .box-container .box h3 span {
    font-size: 2rem;
 }
 
-.dashboard .box-container .box p{
-   padding:1.5rem;
-   background-color: var(--light-bg);
+/* Stil for teksten i hver boks på dashbordet */
+.dashboard .box-container .box p {
+   padding: 1.5rem;
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
    font-size: 1.8rem;
-   border:var(--border);
-   margin:1rem 0;
-   color:var(--light-color);
+   margin: 1rem 0;
+   color: var(--black);
 }
 
-.post-editor form{
-   background-color: var(--white);
-   border: var(--border);
-   padding:2rem;
+/* Stil for skjemaet for å opprette eller redigere et innlegg */
+.post-editor form {
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
+   padding: 2rem;
    box-shadow: var(--box-shadow);
    max-width: 80rem;
-   margin:0 auto;
+   margin: 0 auto;
    padding-top: 1rem;
 }
 
-.post-editor form p{
+/* Stil for tekstelementer i skjemaet for å opprette eller redigere et innlegg */
+.post-editor form p {
    font-size: 1.8rem;
-   color:var(--light-color);
+   color: var(--black);
    padding-top: 1rem;
 }
 
-.post-editor form p span{
-   color:var(--red);
+/* Stil for spesielle tekstelementer i skjemaet for å opprette eller redigere et innlegg */
+.post-editor form p span {
+   color: var(--red);
 }
 
-.post-editor form .box{
+/* Stil for bokser i skjemaet for å opprette eller redigere et innlegg */
+.post-editor form .box {
    width: 100%;
-   margin:1rem 0;
-   border: var(--border);
-   padding:1.4rem;
+   margin: 1rem 0;
+   padding: 1.4rem;
    font-size: 1.8rem;
-   color:var(--black);
-   background-color: var(--light-bg);
+   color: var(--black);
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
 }
 
-.post-editor form textarea{
+/* Spesifikk stil for tekstområdet i skjemaet for å opprette eller redigere et innlegg */
+.post-editor form textarea {
    height: 40rem;
    resize: none;
 }
 
-.post-editor form .image{
+/* Spesifikk stil for bildet i skjemaet for å opprette eller redigere et innlegg */
+.post-editor form .image {
    width: 100%;
    height: 20rem;
    object-fit: contain;
-   margin:1rem 0;
+   margin: 1rem 0;
 }
 
-.show-posts .box-container{
+/* Stil for konteineren som viser alle innlegg */
+.show-posts .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, 33rem);
-   gap:1.5rem;
+   gap: 1.5rem;
    justify-content: center;
    align-items: flex-start;
 }
 
-.show-posts .box-container .box{
-   background-color: var(--white);
+/* Stil for hver boks som viser et innlegg */
+.show-posts .box-container .box {
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
    box-shadow: var(--box-shadow);
-   border:var(--border);
-   padding:2rem;
+   padding: 2rem;
    overflow: hidden;
 }
 
-.show-posts .box-container .box .image{
+/* Stil for bildet i hver boks som viser et innlegg */
+.show-posts .box-container .box .image {
    height: 20rem;
    width: 100%;
    object-fit: contain;
    margin-bottom: 1rem;
 }
 
-.show-posts .box-container .box .status{
+/* Stil for statusen i hver boks som viser et innlegg */
+.show-posts .box-container .box .status {
    font-size: 1.8rem;
    margin-bottom: 1rem;
-   padding:.5rem 1rem;
-   color:var(--white);
+   padding: .5rem 1rem;
+   color: var(--white);
    display: inline-block;
    margin-bottom: 1rem;
 }
 
-.show-posts .box-container .box .title{
+/* Stil for tittelen i hver boks som viser et innlegg */
+.show-posts .box-container .box .title {
    font-size: 2rem;
-   color:var(--black);
+   color: var(--black);
    overflow: hidden;
    text-overflow: ellipsis;
    white-space: nowrap;
-   padding:.5rem 0;
+   padding: .5rem 0;
    min-width: 100%;
 }
 
-.show-posts .box-container .box .posts-content{
+/* Stil for innholdet i hver boks som viser et innlegg */
+.show-posts .box-container .box .posts-content {
    font-size: 1.7rem;
-   color:var(--light-color);
+   color: #fff;
    line-height: 1.5;
-   padding:1rem 0;
+   padding: 1rem 0;
 }
 
-.show-posts .box-container .box .posts-content::after{
+/* Legg til ellipsis (...) etter innholdet i .posts-content etter hver postboks i show-posts */
+.show-posts .box-container .box .posts-content::after {
    content: '...';
 }
 
-.show-posts .box-container .box .icons{
+/* Styling for ikonene i hver postboks i show-posts */
+.show-posts .box-container .box .icons {
    display: flex;
    align-items: center;
    justify-content: space-between;
-   gap:1rem;
-   background-color: var(--light-bg);
-   padding:1.5rem 2rem;
-   border:var(--border);
-   margin:.5rem 0;
+   gap: 1rem;
+   padding: 1.5rem 2rem;
+   margin: .5rem 0;
 }
 
-.show-posts .box-container .box .icons div{
+/* Justering av fontstørrelse for ikoner i show-posts */
+.show-posts .box-container .box .icons div {
    font-size: 1.8rem;
 }
 
-.show-posts .box-container .box .icons div span{
-   color:var(--main-color);
+/* Justering av farge for ikonspesifikke tekster i show-posts */
+.show-posts .box-container .box .icons div span {
+   color: var(--main-color);
 }
 
-.show-posts .box-container .box .icons div i{
-   color:var(--light-color);
+/* Justering av farge og margin for ikonene i show-posts */
+.show-posts .box-container .box .icons div i {
+   color: var(--light-color);
    margin-right: .5rem;
 }
 
-.accounts .box-container{
+/* Layout for boks-containeren i accounts */
+.accounts .box-container {
    display: grid;
    grid-template-columns: repeat(auto-fit, 33rem);
-   gap:1.5rem;
+   gap: 1.5rem;
    justify-content: center;
    align-items: flex-start;
 }
 
-.accounts .box-container .box{
-   background-color: var(--white);
+/* Styling for hver boks i accounts */
+.accounts .box-container .box {
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
    box-shadow: var(--box-shadow);
-   border:var(--border);
-   padding:1rem 2rem;
+   padding: 1rem 2rem;
    text-align: center;
 }
 
-.accounts .box-container .box p{
+/* Justering av stil for tekst i hver boks i accounts */
+.accounts .box-container .box p {
    margin: .5rem 0;
    font-size: 1.8rem;
-   color:var(--black);
+   color: var(--black);
    line-height: 1.5;
 }
 
-.accounts .box-container .box p span{
-   color:var(--main-color);
+/* Justering av farge for spesifikke tekstområder i accounts */
+.accounts .box-container .box p span {
+   color: var(--main-color);
 }
 
-.read-post form{
-   border:var(--border);
-   padding:2rem;
-   background-color: var(--white);
+/* Styling for skjemaet i read-post */
+.read-post form {
+   padding: 2rem;
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
    box-shadow: var(--box-shadow);
 }
 
-.read-post form .status{
-   padding:1rem 2.5rem;
+/* Styling for statusområdet i read-post skjemaet */
+.read-post form .status {
+   padding: 1rem 2.5rem;
    font-size: 2rem;
-   color:var(--white);
+   color: var(--white);
    display: inline-block;
 }
 
-.read-post form .image{
+/* Styling for bildeområdet i read-post skjemaet */
+.read-post form .image {
    width: 100%;
    margin-top: 1.5rem;
 }
 
-.read-post form .title{
-   color:var(--black);
+/* Styling for tittelområdet i read-post skjemaet */
+.read-post form .title {
+   color: var(--black);
    font-size: 2rem;
    margin-top: 1.5rem;
 }
 
-.read-post form .content{
+/* Justering av linjehøyde og fontstørrelse for innholdet i read-post skjemaet */
+.read-post form .content {
    line-height: 1.5;
    font-size: 1.8rem;
-   color:var(--light-color);
-   padding:1rem 0;
+   color: #fff;
+   padding: 1rem 0;
    white-space: pre-line;
 }
 
-.read-post form .icons{
+/* Styling for ikonene i read-post skjemaet */
+.read-post form .icons {
    display: flex;
    align-items: center;
    justify-content: space-between;
-   border:var(--border);
-   background-color: var(--light-bg);
-   padding:1.5rem 2rem;
-   margin:1rem 0;
+   padding: 1.5rem 2rem;
+   margin: 1rem 0;
 }
 
-.read-post form .icons div{
+/* Justering av fontstørrelse for ikonene i read-post skjemaet */
+.read-post form .icons div {
    font-size: 1.8rem;
 }
 
-.read-post form .icons span{
-   color:var(--main-color);
+/* Justering av farge for spesifikke tekstområder i ikonene i read-post skjemaet */
+.read-post form .icons span {
+   color: var(--main-color);
 }
 
-.read-post form .icons i{
-   color:var(--light-color);
+/* Justering av farge og margin for ikonene i read-post skjemaet */
+.read-post form .icons i {
+   color: var(--light-color);
    margin-right: .5rem;
 }
 
-.comments .comment-title{
+/* Styling for tittelen i kommentarområdet */
+.comments .comment-title {
    border-top-right-radius: .5rem;
    border-top-left-radius: .5rem;
-   background-color: var(--black);  
-   padding:2rem;
-   color:var(--white);
+   background-color: var(--black);
+   padding: 2rem;
+   color: var(--white);
    font-size: 2rem;
 }
 
-.comments .box-container{
+/* Styling for boks-containeren i kommentarområdet */
+.comments .box-container {
    border-bottom-right-radius: .5rem;
    border-bottom-left-radius: .5rem;
-   background-color: var(--white);
    box-shadow: var(--box-shadow);
-   border:var(--border);
-   padding:2rem;
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
+   padding: 2rem;
    display: grid;
-   gap:2rem;
+   gap: 2rem;
 }
 
-.comments .box-container .box{
-   background-color: var(--light-bg);
-   padding:1.5rem;
-   border:var(--border);
+/* Styling for hver boks i kommentarområdet */
+.comments .box-container .box {
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
+   padding: 1.5rem;
 }
 
-.comments .box-container .post-title{
+/* Styling for tittelen til hver post i kommentarområdet */
+.comments .box-container .post-title {
    font-size: 2rem;
-   color:var(--light-color);
+   color: var(--light-color);
 }
 
-.comments .box-container .post-title span{
+/* Justering av farge for spesifikke tekstområder i tittelen til hver post i kommentarområdet */
+.comments .box-container .post-title span {
    color: var(--black);
 }
 
-.comments .box-container .post-title a{
-   color:var(--main-color);
+/* Styling for lenkene i tittelen til hver post i kommentarområdet */
+.comments .box-container .post-title a {
+   color: var(--main-color);
    margin-left: .5rem;
 }
 
-.comments .box-container .post-title a:hover{
-   color:var(--black);
+/* Styling for hover-effekten på lenkene i tittelen til hver post i kommentarområdet */
+.comments .box-container .post-title a:hover {
+   color: var(--black);
    text-decoration: underline;
 }
 
-.comments .box-container .box .user{
+/* Styling for brukerinformasjon og tekstinnhold i hver kommentarboks */
+.comments .box-container .box .user {
    display: flex;
    align-items: center;
-   gap:1rem;
+   gap: 1rem;
    margin-bottom: 1.5rem;
 }
 
-.comments .box-container .box .user i{
+/* Styling for ikonet og tekstområdet i brukerinformasjonen i hver kommentarboks */
+.comments .box-container .box .user i {
    font-size: 2rem;
-   border:var(--border);
    height: 4.5rem;
    width: 5rem;
    line-height: 4.1rem;
-   background-color: var(--white);
    text-align: center;
-   color:var(--light-color);
+   color: var(--black);
 }
 
-.comments .box-container .box .user .user-info span{
+/* Styling for brukerinformasjonsteksten i hver kommentarboks */
+.comments .box-container .box .user .user-info span {
    font-size: 2rem;
-   color:var(--main-color);
+   color: var(--main-color);
 }
 
-.comments .box-container .box .user .user-info div{
-   color:var(--light-color);
+/* Styling for teksten i brukerinformasjonen i hver kommentarboks */
+.comments .box-container .box .user .user-info div {
+   color: #fff;
    font-size: 1.6rem;
    margin-top: .2rem;
 }
 
-.comments .box-container .box .text{
+/* Styling for selve kommentarteksten i hver kommentarboks */
+.comments .box-container .box .text {
    font-size: 1.8rem;
-   color:var(--black);
+   color: var(--black);
    line-height: 1.5;
    white-space: pre-line;
-   background-color: var(--white);
-   padding:1.5rem;
-   margin:.5rem 0;
-   border:var(--border);
+   padding: 1.5rem;
+   margin: .5rem 0;
+   background-color: #b0b0b068;
+   backdrop-filter: blur(10px);
 }
 
+/* Media query for skjermstørrelser opptil 1200px */
+@media (max-width:1200px) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* media queries  */
-
-@media (max-width:1200px){
-
-   html{
+   html {
       font-size: 55%;
    }
 
-   body{
+   body {
       padding-left: 0;
    }
 
-   #menu-btn{
+   /* Vis menyknapp ved behov */
+   #menu-btn {
       display: block;
    }
 
-   .header{
+   /* Justering av header ved mindre skjermstørrelse */
+   .header {
       left: -35rem;
       transition: .2s linear;
    }
 
-   .header.active{
+   /* Aktiv header-tilstand ved mindre skjermstørrelse */
+   .header.active {
       left: 0rem;
-      box-shadow: 0 0 0 100vw rgba(0,0,0,.7);
+      box-shadow: 0 0 0 100vw rgba(0, 0, 0, .7);
       border-right: none;
    }
 
 }
 
-@media (max-width:450px){
+/* Media query for skjermstørrelser opptil 450px */
+@media (max-width:450px) {
 
-   html{
+   html {
       font-size: 50%;
    }
 
-   .flex-btn{
+   /* Justering av stil for flex-knapper ved mindre skjermstørrelse */
+   .flex-btn {
       flex-flow: column;
-      gap:0;
+      gap: 0;
    }
 
-   .heading{
+   /* Justering av fontstørrelse for overskrift ved mindre skjermstørrelse */
+   .heading {
       font-size: 3rem;
    }
 
-   .show-posts .box-container{
+   /* Justering av grid layout for post-container ved mindre skjermstørrelse */
+   .show-posts .box-container {
       grid-template-columns: 1fr;
    }
 
-   .accounts .box-container{
+   /* Justering av grid layout for account-container ved mindre skjermstørrelse */
+   .accounts .box-container {
       grid-template-columns: 1fr;
    }
 

@@ -1,15 +1,19 @@
 <?php
 
+// Inkluderer databasekoblingsfilen
 include 'components/connect.php';
 
+// Starter økten for å kunne bruke $_SESSION-variabler
 session_start();
 
+// Sjekker om bruker er logget inn, henter bruker-ID hvis det er tilfelle
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
    $user_id = '';
 };
 
+// Inkluderer filen for å håndtere "like" på innlegg
 include 'components/like_post.php';
 
 ?>
@@ -27,10 +31,18 @@ include 'components/like_post.php';
 </head>
 
 <body>
+   <!-- Inkluderer brukerhodet for konsistens -->
    <?php include 'components/user_header.php'; ?>
+
+   <!-- Seksjon for kategorier -->
    <section class="categories">
+
+      <!-- Overskrift for kategoriseksjonen -->
       <h1 class="heading">kategorier</h1>
+
+      <!-- Bokscontainer for kategoriene -->
       <div class="box-container">
+         <!-- Kategori-bokser med lenker til kategorisider -->
          <div class="box"><a href="category.php?category=nature">natur</a></div>
          <div class="box"><a href="category.php?category=eduction">utdanning</a></div>
          <div class="box"><a href="category.php?category=pets and animals">dyr</a></div>
@@ -53,7 +65,9 @@ include 'components/like_post.php';
          <div class="box"><a href="category.php?category=animations">animasjoner</a></div>
       </div>
    </section>
+
+   <!-- Inkluderer skriptfil for interaktivitet -->
    <script src="js/script.js"></script>
-<body>
-   
+</body>
+
 </html>

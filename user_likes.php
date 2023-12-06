@@ -1,16 +1,21 @@
 <?php
 
+// Inkluderer tilkoblingsfilen for å koble til databasen
 include 'components/connect.php';
 
+// Starter sesjonen for å kunne lagre brukerinformasjon
 session_start();
 
+// Sjekker om brukeren allerede er logget inn ved å se etter bruker-ID i sesjonen
 if (isset($_SESSION['user_id'])) {
    $user_id = $_SESSION['user_id'];
 } else {
+   // Hvis ikke, setter bruker-ID til tom streng og sender brukeren til hjemmesiden
    $user_id = '';
    header('location:home.php');
-};
+}
 
+// Inkluderer filen for å behandle likes på innlegg
 include 'components/like_post.php';
 
 ?>
@@ -30,9 +35,10 @@ include 'components/like_post.php';
 <body>
    <?php include 'components/user_header.php'; ?>
    <section class="posts-container">
-      <h1 class="heading">likte innlegg</h1>
+      <h1 class="heading">Likte innlegg</h1>
       <div class="box-container">
          <?php
+         // Henter innleggene som brukeren har likt
          $select_likes = $conn->prepare("SELECT * FROM `likes` WHERE user_id = ?");
          $select_likes->execute([$user_id]);
          if ($select_likes->rowCount() > 0) {
@@ -44,10 +50,6 @@ include 'components/like_post.php';
                      if ($fetch_posts['status'] != 'deactive') {
 
                         $post_id = $fetch_posts['id'];
-
-                        $count_post_likes = $conn->prepare("SELECT * FROM `likes` WHERE post_id = ?");
-                        $count_post_likes->execute([$post_id]);
-                        $total_post_likes = $count_post_likes->rowCount();
 
                         $count_post_likes = $conn->prepare("SELECT * FROM `likes` WHERE post_id = ?");
                         $count_post_likes->execute([$post_id]);
@@ -72,26 +74,25 @@ include 'components/like_post.php';
                            ?>
                            <div class="post-title"><?= $fetch_posts['title']; ?></div>
                            <div class="post-content content-150"><?= $fetch_posts['content']; ?></div>
-                           <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">les mer</a>
+                           <a href="view_post.php?post_id=<?= $post_id; ?>" class="inline-btn">Les mer</a>
                            <div class="icons">
-                              <a href="view_post.php?post_id=<?= $post_id; ?>"><i class="fas fa-comment"></i><span>(<?= $total_post_likes; ?>)</span></a>
-                              <button type="submit" name="like_post"><i class="fas fa-heart" style="<?php if ($total_post_likes > 0 and $user_id != '') {
+                              <a href="view_post.php?post_id=<?= $post_id; ?>"><i class="fas fa-comment"></i><span><?= $total_post_likes; ?></span></a>
+                              <button type="submit" name="like_post"><i class="fas fa-heart" style="<?php if ($total_post_likes > 0 && $user_id != '') {
                                                                                                          echo 'color:red;';
-                                                                                                      }; ?>"></i><span>(<?= $total_post_likes; ?>)</span></button>
+                                                                                                      }; ?>"></i><span><?= $total_post_likes; ?></span></button>
                            </div>
                         </form>
          <?php
                      }
                   }
                } else {
-                  echo '<p class="empty">ingen innlegg ble funnet i denne kategoriet!</p>';
+                  echo '<p class="empty">Ingen innlegg ble funnet i denne kategorien!</p>';
                }
             }
          } else {
-            echo '<p class="empty">ingen likte innlegg tilgjengelig!</p>';
+            echo '<p class="empty">Ingen likte innlegg tilgjengelig!</p>';
          }
          ?>
-      </div>
       </div>
    </section>
    <script src="js/script.js"></script>

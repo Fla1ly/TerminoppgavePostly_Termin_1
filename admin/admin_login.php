@@ -1,25 +1,35 @@
 <?php
 
+// Inkluderer tilkoblingsfilen for å koble til databasen
 include '../components/connect.php';
 
+// Starter sesjonen for å kunne lagre admininformasjon
 session_start();
 
+// Håndterer innloggingsskjemaet når det blir sendt
 if (isset($_POST['submit'])) {
 
+   // Henter og filtrerer brukernavn og passord fra skjemaet
    $name = $_POST['name'];
    $name = filter_var($name, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
    $pass = sha1($_POST['pass']);
    $pass = filter_var($pass, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+   // Henter admininformasjon fra databasen basert på brukernavn og passord
    $select_admin = $conn->prepare("SELECT * FROM `admin` WHERE name = ? AND password = ?");
    $select_admin->execute([$name, $pass]);
 
+   // Sjekker om det er en match i databasen
    if ($select_admin->rowCount() > 0) {
+      // Henter admin-ID og lagrer den i sesjonen
       $fetch_admin_id = $select_admin->fetch(PDO::FETCH_ASSOC);
       $_SESSION['admin_id'] = $fetch_admin_id['id'];
+
+      // Omdirigerer til admin-dashboard etter vellykket innlogging
       header('location:dashboard.php');
    } else {
-      $message[] = 'feil brukernavn eller passord!';
+      // Melding vises hvis innloggingen mislykkes
+      $message[] = 'Feil brukernavn eller passord!';
    }
 }
 
@@ -39,6 +49,7 @@ if (isset($_POST['submit'])) {
 
 <body style="padding-left: 0 !important;">
    <?php
+   // Viser meldinger hvis det er noen
    if (isset($message)) {
       foreach ($message as $message) {
          echo '
@@ -50,13 +61,14 @@ if (isset($_POST['submit'])) {
       }
    }
    ?>
+   <!-- HTML-seksjon for innloggingsskjemaet -->
    <section class="form-container">
       <form action="" method="POST">
-         <p>standard brukernavn = <span>creator</span> & passord = <span>pass</span></p>
-         <h3>logg inn</h3>
-         <input type="text" name="name" maxlength="20" required placeholder="brukernavn" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="password" name="pass" maxlength="20" required placeholder="passord" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
-         <input type="submit" value="logg in" name="submit" class="btn">
+         <p>Standard brukernavn = <span>creator</span> & passord = <span>pass</span></p>
+         <h3>Logg inn</h3>
+         <input type="text" name="name" maxlength="20" required placeholder="Brukernavn" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="password" name="pass" maxlength="20" required placeholder="Passord" class="box" oninput="this.value = this.value.replace(/\s/g, '')">
+         <input type="submit" value="Logg inn" name="submit" class="btn">
       </form>
    </section>
 </body>
