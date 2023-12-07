@@ -30,8 +30,8 @@ if (isset($message)) {
          <a href="posts.php"> <i class="fas fa-angle-right"></i> Innlegg</a>
          <a href="all_category.php"> <i class="fas fa-angle-right"></i> Kategorier</a>
          <a href="authors.php"> <i class="fas fa-angle-right"></i> Forfattere</a>
-         <a href="../pdf/Postly_brukerveiledning"> <i class="fas fa-angle-right"></i> Brukerveiledning</a>
-         <a href="../pdf/Postly_itlaering"> <i class="fas fa-angle-right"></i> It-læring</a>
+         <a href="./pdf/Postly_brukerveiledning.pdf"> <i class="fas fa-angle-right"></i> Brukerveiledning</a>
+         <a href="./pdf/IT-laering.pdf"> <i class="fas fa-angle-right"></i> It-læring</a>
          <a href="login.php"> <i class="fas fa-angle-right"></i> Logg inn</a>
          <a href="register.php"> <i class="fas fa-angle-right"></i> Registrering</a>   
       </nav>
