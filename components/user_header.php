@@ -32,6 +32,7 @@ if (isset($message)) {
          <a href="authors.php"> <i class="fas fa-angle-right"></i> Forfattere</a>
          <a href="./pdf/Postly_brukerveiledning.pdf"> <i class="fas fa-angle-right"></i> Brukerveiledning</a>
          <a href="./pdf/IT-laering.pdf"> <i class="fas fa-angle-right"></i> It-læring</a>
+         <a href="./pdf/Dokumentasjon.pdfx"> <i class="fas fa-angle-right"></i> Teknisk dokumentasjon</a>
          <a href="login.php"> <i class="fas fa-angle-right"></i> Logg inn</a>
          <a href="register.php"> <i class="fas fa-angle-right"></i> Registrering</a>   
       </nav>
