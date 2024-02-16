@@ -89,7 +89,7 @@ if (isset($_POST['draft'])) {
 
    if (isset($image)) {
       if ($select_image->rowCount() > 0 and $image != '') {
-         $message[] = 'Navnet til bildet gjentar seg!';
+         $message[] = 'bildet er allerede i systemet!';
       } elseif ($image_size > 2000000) {
          $message[] = 'Bildet er for stort!';
       } else {
