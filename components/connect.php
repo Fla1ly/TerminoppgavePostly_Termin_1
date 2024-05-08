@@ -3,8 +3,8 @@
 // Databaseinformasjon
 $db_host = 'localhost';
 $db_name = 'blog_db';
-$db_user = 'Dawid';
-$db_password = 'Admin';
+$db_user = '/';
+$db_password = '/';
 
 try {
     // Oppretter en PDO-tilkobling til databasen
